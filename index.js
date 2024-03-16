@@ -11,12 +11,28 @@ class Board {
 				this.boardArray.push(new Node(row, column))
 		}
 	}
+	// Method returning a node from given coordinates
+	// array of row/column [0, 3]
+	findNode(coordinates) {
+		console.log('findNode received ' + coordinates)
+		for (let node of this.boardArray) {
+			console.log('checking ' + node.square)
+			if (
+				node.square[0] === coordinates[0] &&
+				node.square[1] === coordinates[1]
+			) {
+				console.log('match found at ' + node)
+				return node
+			}
+		}
+	}
 }
 
 class Node {
 	constructor(row, column) {
 		this.row = row
 		this.column = column
+		this.square = [row, column]
 		this.adjacencies = this.populateAdjacencies()
 	}
 
@@ -53,3 +69,4 @@ board.buildBoard()
 
 console.log(board.boardArray[3])
 console.log(board.boardArray[8])
+console.log(board.findNode([0, 3]))
